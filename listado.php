@@ -11,20 +11,13 @@
 
 <body>
   <?php
-  require "conexion.php";
-  include "botones.php";
+  require "funcionamiento/conexion.php";
+  include "funcionamiento/botones.php";
+  include "funcionamiento/querysR.php";
 
-  $query = $conexion->query("SELECT id, nombre FROM productos;");
+  $productos = obtenerPros();
 
-  $productos = array();
-  $resultado = $query->fetch(PDO::FETCH_OBJ);
-  while ($resultado != null) {
-    array_push($productos, array(
-      "id" => $resultado->id,
-      "nombre" => $resultado->nombre
-    ));
-    $resultado = $query->fetch(PDO::FETCH_OBJ);
-  }
+  print_r($_GET);
   ?>
 
   <div class="container">
@@ -38,9 +31,9 @@
     <!-- BOTÓN CREAR -->
     <div class="row">
       <div class="col-1">
-        <form method="GET" action="formulario.jsp">
+        <form method="GET" action="formulario.php">
           <div class="d-grid gap-2">
-            <input type="hidden" name="accion" value="crear">
+            <input type="hidden" name="accion" value="Crear">
             <input type="submit" value="Crear" class="btn btn-success">
           </div>
         </form>
@@ -63,15 +56,15 @@
               foreach ($productos as $clave => $valor) {
                 echo "<tr>";
                 echo "<td>";
-                crearBoton("Detalle", "info", "#", $valor['id']);
+                crearBoton("Detalle", "info", "detalle.php", $valor['id']);
                 echo "</td>";
                 echo "<th>" . $valor['id'] . "</th>";
                 echo "<td>" . $valor['nombre'] . "</td>";
                 echo "<td>";
-                crearBoton("Actualizar", "warning", "#", $valor['id']);
+                crearBoton("Actualizar", "warning", "formulario.php", $valor['id']);
                 echo "</td>";
                 echo "<td>";
-                crearBoton("Borrar", "danger", "#", $valor['id']);
+                crearBoton("Borrar", "danger", "listado.php", $valor['id']);
                 echo "</td>";
                 echo "</tr>";
               }
