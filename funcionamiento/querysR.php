@@ -1,5 +1,4 @@
 <?php
-require "conexion.php";
 
 function obtenerPros()
 {
@@ -22,9 +21,7 @@ function obtenerPro($id)
   global $conexion;
   $query = $conexion->query("SELECT * FROM productos WHERE id = '" . $id . "';");
   $resultado = $query->fetch(PDO::FETCH_OBJ);
-  if ($resultado == null) {
-    header('Location:listado.php?accion=error');
-  }
+  $resultado == null ? header('Location:listado.php?accion=Error_id') : "";
   return array(
     "id" => $resultado->id,
     "nombre" => $resultado->nombre,
