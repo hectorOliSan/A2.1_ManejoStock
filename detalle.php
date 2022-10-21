@@ -18,8 +18,11 @@
   $accion = $_GET['accion'] != null ? $_GET['accion'] : header('Location:listado.php');
   $_GET['accion'] == "Detalle" ? "" : header('Location:listado.php');
   $id = array_key_exists('id', $_GET) ? $_GET['id'] : "";
-  $producto = obtenerPro($id);
-  $familia = obtenerProFam($producto['familia']);
+
+  if ($accion == "Detalle") {
+    $producto = obtenerPro($id);
+    $familia = obtenerProFam($producto['familia']);
+  }
   ?>
 
   <div class="container">
