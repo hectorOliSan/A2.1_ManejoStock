@@ -14,7 +14,7 @@
   require "funcionamiento/conexion.php";
   include "funcionamiento/querysR.php";
 
-  $accion = $_GET['accion']!=null ? $_GET['accion'] : header('Location:listado.php');
+  $accion = $_GET['accion'] != null ? $_GET['accion'] : header('Location:listado.php');
   ($_GET['accion'] == "Crear") || ($_GET['accion'] == "Actualizar")
     ? "" : header('Location:listado.php');
   $id = array_key_exists('id', $_GET) ? $_GET['id'] : "";
@@ -43,7 +43,10 @@
 
     <div class="row">
       <form method="GET" action="listado.php">
-        <?php echo "<input type='hidden' name='id' value='" . $id . "'>"; ?>
+        <?php
+        if ($accion == "Actualizar")
+          echo "<input type='hidden' name='id' value='" . $id . "'>";
+        ?>
 
         <div class="row">
           <div class="col-6 mb-3">
