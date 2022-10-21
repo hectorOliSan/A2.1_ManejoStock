@@ -16,6 +16,7 @@
   include "funcionamiento/querysR.php";
   include "funcionamiento/querysCUD.php";
 
+  !empty($_GET) && !array_key_exists('accion', $_GET) ? header('Location:listado.php') : "";
   $accion = array_key_exists('accion', $_GET) ? $_GET['accion'] : "";
   $accion == "Crear" ? crearPro($_GET) : "";
   $accion == "Actualizar" ? actualizarPro($_GET) : "";
@@ -23,6 +24,11 @@
 
   if ($accion == "Error_id") {
     crearAlerta("danger", "<b>Error:</b> El ID no coincide con ningún Producto");
+  }
+
+  if ($accion == "Error_param") {
+    $tipo = array_key_exists('tipo', $_GET) ? $_GET['tipo'] : header('Location:listado.php');
+    crearAlerta("danger", "<b>Error:</b> Los parámetros para <b>".$tipo."</b>, no son los apropiados");
   }
 
   $productos = obtenerPros();
