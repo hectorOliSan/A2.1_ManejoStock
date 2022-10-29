@@ -10,8 +10,9 @@ function crearBoton($accion, $btn, $php, $id)
   echo "</form>";
 }
 
-function crearAlerta($color, $mensaje) {
-  echo "<div class='alert alert-". $color ." alert-dismissible fade show m-3' role='alert'>";
+function crearAlerta($color, $mensaje)
+{
+  echo "<div class='alert alert-" . $color . " alert-dismissible fade show m-3' role='alert'>";
   echo $mensaje;
   echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
   echo "</div>";
