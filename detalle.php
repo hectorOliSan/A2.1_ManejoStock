@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listado de Productos</title>
+  <title>Detalle del Producto</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 </head>
 
@@ -16,7 +16,7 @@
   include "funcionamiento/querysR.php";
 
   $accion = $_GET['accion'] != null ? $_GET['accion'] : header('Location:listado.php');
-  $_GET['accion'] == "Detalle" ? "" : header('Location:listado.php');
+  $accion == "Detalle" ? "" : header('Location:listado.php');
   $id = array_key_exists('id', $_GET) ? $_GET['id'] : "";
 
   if ($accion == "Detalle") {
