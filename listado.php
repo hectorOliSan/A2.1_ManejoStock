@@ -28,7 +28,7 @@
 
   if ($accion == "Error_param") {
     $tipo = array_key_exists('tipo', $_GET) ? $_GET['tipo'] : header('Location:listado.php');
-    crearAlerta("danger", "<b>Error:</b> Los parámetros para <b>".$tipo."</b>, no son los apropiados");
+    crearAlerta("danger", "<b>Error:</b> Los parámetros para <b>" . $tipo . "</b>, no son los apropiados");
   }
 
   $productos = obtenerPros();
@@ -59,7 +59,7 @@
               <th>Detalle</th>
               <th>Código</th>
               <th>Nombre</th>
-              <th colspan="2">Acciones</th>
+              <th colspan="3">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +76,9 @@
               echo "</td>";
               echo "<td>";
               crearBoton("Borrar", "danger", "listado.php", $valor['id']);
+              echo "</td>";
+              echo "<td>";
+              crearBoton("Mover Stock", "primary", "moverstock.php", $valor['id']);
               echo "</td>";
               echo "</tr>";
             }
