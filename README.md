@@ -1,5 +1,3 @@
-# ManejoStock
-
 # A2.1_ManejoStock
 
 Partiendo de la base de datos '**proyecto**' (que debes crear previamente a partir de los ficheros alojados en el aula virtual), vamos a programar una aplicación que permita gestionar los registros de la tabla '**productos**'. La aplicación se dividirá en 5 páginas:
