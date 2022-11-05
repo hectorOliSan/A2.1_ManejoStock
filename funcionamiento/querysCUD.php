@@ -94,7 +94,7 @@ function moverStock($transaccion)
   } else {
     try {
       $conexion->beginTransaction();
-      $stock = obtenerStock($transaccion['id'], $transaccion['nueva_tienda'], $transaccion['unidades']);
+      $stock = obtenerStock($transaccion['id'], $transaccion['nueva_tienda']);
       if ($stock == null) {
         $conexion->exec("INSERT INTO stocks (producto, tienda, unidades)
           VALUES (" . $transaccion['id'] . ", " . $transaccion['nueva_tienda'] .
