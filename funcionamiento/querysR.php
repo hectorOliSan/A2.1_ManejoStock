@@ -75,7 +75,7 @@ function obtenerProFam($pFam)
   }
 }
 
-function obtenerStock($id, $tienda, $unidades)
+function obtenerStock($id, $tienda)
 {
   global $conexion;
   try {
