@@ -102,7 +102,7 @@
       $('#listado').DataTable({
         language: {
           search: "Buscar:",
-          lengthMenu: "Mostrando _MENU_ productos",
+          lengthMenu: "Mostrar _MENU_ productos",
           info: "Mostrando de _START_ a _END_ de _TOTAL_ productos",
           infoEmpty: "Mostrando 0 productos",
           infoFiltered: "(filtrado de _MAX_ productos totales)",
@@ -111,7 +111,7 @@
           paginate: {
             previous: "<i class='bi bi-arrow-left-short'></i>",
             next: "<i class='bi bi-arrow-right-short'></i>",
-          },
+          }
         }
       });
     });
