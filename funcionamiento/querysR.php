@@ -81,7 +81,7 @@ function obtenerStock($id, $tienda)
   try {
     $query = $conexion->query(
       "SELECT * FROM stocks
-      WHERE producto='".$id."' AND tienda='".$tienda."';"
+      WHERE producto='" . $id . "' AND tienda='" . $tienda . "';"
     );
     $resultado = $query->fetch(PDO::FETCH_OBJ);
     return $resultado;
@@ -123,7 +123,8 @@ function obtenerTienda($tienda_id)
   global $conexion;
   try {
     $tiendas = array();
-    $query = $conexion->query("SELECT * FROM tiendas
+    $query = $conexion->query(
+      "SELECT * FROM tiendas
       WHERE id != '" . $tienda_id . "';"
     );
     $resultado = $query->fetch(PDO::FETCH_OBJ);
@@ -138,5 +139,31 @@ function obtenerTienda($tienda_id)
     return $tiendas;
   } catch (Exception $e) {
     crearAlerta("danger", "Error al <b>Obtener</b> Tienda(" . $tienda_id . "): " . $e);
+  }
+}
+
+function obtenerUsuario($user, $pw)
+{
+  global $conexion;
+  try {
+    $usuarios = array();
+    $query = $conexion->query("SELECT *
+      FROM usuarios WHERE usuario = '" . $user . "' AND
+      clave = '" . $pw . "';");
+    $resultado = $query->fetch(PDO::FETCH_OBJ);
+    while ($resultado != null) {
+      array_push($usuarios, array(
+        "usuario" => $resultado->usuario,
+        "clave" => $resultado->clave,
+        "nombrecompleto" => $resultado->nombrecompleto,
+        "correo" => $resultado->correo,
+        "colorfondo" => $resultado->colorfondo,
+        "tipoletra" => $resultado->tipoletra,
+      ));
+      $resultado = $query->fetch(PDO::FETCH_OBJ);
+    }
+    return $usuarios;
+  } catch (Exception $e) {
+    echo "<p>Error al <b>Obtener</b> Usuarios: " . $e . ".</p>";
   }
 }
