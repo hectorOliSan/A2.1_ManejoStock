@@ -113,3 +113,19 @@ function moverStock($transaccion)
     }
   }
 }
+
+function actualizarUsuario($usuario, $datos_usuario)
+{
+  global $conexion;
+  try {
+    $query = $conexion->prepare("UPDATE usuarios
+      SET nombrecompleto=?, correo=?, tipoletra=?, colorfondo=? WHERE usuario=?");
+    $query->execute([
+      $datos_usuario['nombrecompleto'], $datos_usuario['correo'],
+      $datos_usuario['tipoletra'], $datos_usuario['colorfondo'], $usuario
+    ]);
+    header("refresh: 0;");
+  } catch (Exception $e) {
+    crearAlerta("danger", "Error al <b>Actualizar</b> Usuario: " . $e);
+  }
+}
