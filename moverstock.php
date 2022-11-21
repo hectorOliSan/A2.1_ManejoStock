@@ -7,15 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock Producto</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
-<body>
-  <?php
-  require "funcionamiento/conexion.php";
-  include "funcionamiento/elementos.php";
-  include "funcionamiento/querysR.php";
-  include "funcionamiento/querysCUD.php";
+<?php
+require "funcionamiento/conexion.php";
+include "funcionamiento/elementos.php";
+include "funcionamiento/querysR.php";
+include "funcionamiento/querysCUD.php";
+session_start();
+include 'funcionamiento/datos_sesion.php';
+?>
 
+<body style="background-color: <?php echo $colorfondo ?>; font-family: <?php echo $tipoletra ?>;">
+  <?php
   !empty($_GET) && !array_key_exists('accion', $_GET) ? header('Location:listado.php') : "";
   $accion = array_key_exists('accion', $_GET) ? $_GET['accion'] : "";
   $accion == "Mover Stock" ? "" : header('Location:listado.php');
@@ -26,6 +31,23 @@
   $producto = obtenerPro($id);
   $stock = obtenerProStock($id);
   ?>
+
+  <div class="d-flex justify-content-between align-items-center p-3">
+    <div class="d-flex align-items-center">
+      <a href="index.php" class="mx-2 btn btn-sm btn-danger"><i class="bi bi-power"></i></a>
+      <p class="m-0">Cerrar Sesión</p>
+    </div>
+    <div class="d-flex align-items-center">
+      <p class="m-0 font-monospace">Usuario: <b><?php echo $nombrecompleto ?></b></p>
+      <form method="POST" action="perfil.php">
+        <input type="hidden" name="php" value="moverstock.php">
+        <input type="hidden" name="accion" value="Mover Stock">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <button type="submit" class="mx-2 btn btn-sm btn-secondary"><i class='bi bi-gear-fill'></i></button>
+      </form>
+    </div>
+  </div>
+
   <div class="container">
     <br>
     <div class="row">
