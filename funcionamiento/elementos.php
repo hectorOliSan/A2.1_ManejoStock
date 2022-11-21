@@ -17,3 +17,9 @@ function crearAlerta($color, $mensaje)
   echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
   echo "</div>";
 }
+
+function noAutorizado($tipo)
+{
+  header('Location:index.php?error=' . $tipo);
+  exit;
+}
