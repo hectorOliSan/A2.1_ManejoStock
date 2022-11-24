@@ -27,9 +27,17 @@
     crearAlerta("danger", "Debes <b>iniciar sesión</b>");
   }
   ?>
-  <p class="fs-1 text-center pt-5 pb-3">Inicia Sesión</p>
+  <p class="fs-1 m-0 p-0 text-center pt-5 pb-3">Inicia Sesión</p>
+  <?php
+  if (isset($_COOKIE["inicio_sesion"])) {
+    $ultimo = sizeof($_COOKIE["inicio_sesion"]);
+    echo "<p class='fs-5 text-center text-muted m-0 p-0'>Último inicio de sesión: <b>";
+    echo $_COOKIE["inicio_sesion"][$ultimo - 1];
+    echo "</b></p>";
+  }
+  ?>
   <form action="listado.php" method="POST">
-    <div class="col-6 mx-auto">
+    <div class="col-6 mx-auto mt-4">
       <p class="m-0 fs-5">Usuario:</p>
       <div class="input-group mb-3">
         <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
